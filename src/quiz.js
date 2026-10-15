@@ -1,20 +1,3 @@
-class Question {
-  constructor(text, choices, answer, difficulty) {
-    this.text = text;
-    this.choices = choices;
-    this.answer = answer;
-    this.difficulty = difficulty;
-  }
-
-  shuffleChoices() {
-    for (let i = this.choices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      // Troca as opções de posição
-      [this.choices[i], this.choices[j]] = [this.choices[j], this.choices[i]];
-    }
-  }
-}
-
 class Quiz {
   constructor(questions, timeLimit, timeRemaining) {
     this.questions = questions;
@@ -64,5 +47,16 @@ class Quiz {
     if (this.currentQuestionIndex < this.questions.length) {
       return false;
     } else if (this.currentQuestionIndex === this.questions.length) return true;
+  }
+  averageDifficulty() {
+    this.questions = this.questions.map((question) => {
+      let diffArray = question.difficulty;
+      console.log(diffArray);
+
+      let averageDifficulty = diffArray.reduce((acc, elemnt1) => {
+        return acc + elemnt1;
+        console.log(averageDifficulty);
+      });
+    });
   }
 }
