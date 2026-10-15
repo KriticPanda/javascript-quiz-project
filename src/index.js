@@ -130,34 +130,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log(questions);
 
-    let currentQuestionIndex = 0;
-
     function renderCurrentQuestion() {
-      const currentQuestion = questions[currentQuestionIndex];
+      const currentQuestion = quiz.getQuestion();
 
       choiceContainer.innerHTML = "";
 
       currentQuestion.choices.forEach(function (choice) {
-        // on the current question, check the current choices index
-
         choiceContainer.innerHTML += `
       <div>
         <input
           type="radio"
-          
-          name="question-${currentQuestionIndex}"
+          name="choice"
           value="${choice}"
         >
 
-        <label >
-          ${choice}
-        </label>
+        <label>${choice}</label>
       </div>
     `;
       });
     }
 
     renderCurrentQuestion();
+
     // Loop through the current question `choices`.
     // For each choice create a new radio input with a label, and append it to the choice container.
     // Each choice should be displayed as a radio input element with a label:
@@ -186,7 +180,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (selectedAnswer) {
       quiz.checkAnswer(selectedAnswer);
+      quiz.moveToNextQuestion();
+      showQuestion();
     }
+
     console.log("input", selectedAnswer);
 
     //conditional to return for instance no answer given when no value is true on property checked

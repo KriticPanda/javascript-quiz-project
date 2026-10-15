@@ -41,6 +41,9 @@ class Quiz {
     // Verifica se a resposta dada coincide com a resposta correta do objeto Question
     if (answer === currentQuestion.answer) {
       this.correctAnswers++;
+      console.log("Correct!");
+    } else {
+      console.log("Incorrect!");
     }
   }
   hasEnded() {
